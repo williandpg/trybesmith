@@ -10,6 +10,15 @@ async function createProduct(product: ProductInputtableTypes): Promise<ServiceRe
   };
 }
 
+async function getProducts(): Promise<ServiceResponse<Product[]>> {
+  const products = await ProductModel.findAll();
+  return {
+    status: 200,
+    data: products.map((product) => product.dataValues),
+  };
+}
+
 export default {
   createProduct,
+  getProducts,
 };
